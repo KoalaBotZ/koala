@@ -4,7 +4,6 @@ import consola from "consola";
 const envSchema = z.object({
     DISCORD_TOKEN: z.string().min(1, "Token must not be empty"),
     MONGO_URI: z.string().min(1, "Mongo URI must not be empty"),
-    WEBHOOK_URL: z.string().min(1, "Webhook URL must not be empty"),
 });
 
 type EnvKeys = keyof z.infer<typeof envSchema>;
