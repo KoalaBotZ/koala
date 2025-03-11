@@ -1,8 +1,10 @@
 const module = await import("../../common/json/settings.json", {
-    with: { type: "json" }
-})
+	with: {
+		type: "json",
+	},
+});
 
 export const settings = {
-    emoji: module.default.emojis,
-    colors: module.default.colors,
-}
+	emoji: module.default.emojis,
+	colors: module.default.colors,
+};

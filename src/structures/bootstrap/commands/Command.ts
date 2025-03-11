@@ -1,46 +1,62 @@
-import { ChatInputApplicationCommandData, ChatInputCommandInteraction, PermissionResolvable, PermissionsBitField } from "discord.js";
+import {
+	ChatInputApplicationCommandData,
+	ChatInputCommandInteraction,
+	PermissionFlagsBits,
+	PermissionResolvable,
+} from "discord.js";
 import { CommandHandler } from "./CommandHandler.ts";
 
-export class Command implements ChatInputApplicationCommandData {
-    public name: string;
-    public description: string;
+export type CommandParams = {
+	name: string;
+	description: string;
+	nameLocalizations?: ChatInputApplicationCommandData["nameLocalizations"];
+	descriptionLocalizations?: ChatInputApplicationCommandData["descriptionLocalizations"];
+	options?: ChatInputApplicationCommandData["options"];
+	type?: ChatInputApplicationCommandData["type"];
+	dmPermission?: ChatInputApplicationCommandData["dmPermission"];
+	defaultMemberPermissions?:
+		| PermissionResolvable
+		| null;
+	nsfw?: ChatInputApplicationCommandData["nsfw"];
+	contexts?: ChatInputApplicationCommandData["contexts"];
+	run: (
+		interaction: ChatInputCommandInteraction,
+	) =>
+		| void
+		| Promise<void>;
+};
 
-    public nameLocalizations?: ChatInputApplicationCommandData["nameLocalizations"];
-    public descriptionLocalizations?: ChatInputApplicationCommandData["descriptionLocalizations"];
-    public options?: ChatInputApplicationCommandData["options"];
-    public type?: ChatInputApplicationCommandData["type"];
-    public dmPermission?: ChatInputApplicationCommandData["dmPermission"];
-    public defaultMemberPermissions?: PermissionResolvable | null | undefined;
-    public nsfw?: ChatInputApplicationCommandData["nsfw"];
-    public contexts?: ChatInputApplicationCommandData["contexts"];
+export class Command {
+	public name: string;
+	public description: string;
 
-    public run: (interaction: ChatInputCommandInteraction) => void | Promise<void>;
+	public nameLocalizations?: CommandParams["nameLocalizations"];
+	public descriptionLocalizations?: CommandParams["descriptionLocalizations"];
+	public options?: CommandParams["options"];
+	public type?: CommandParams["type"];
+	public dmPermission?: CommandParams["dmPermission"];
+	public defaultMemberPermissions?: CommandParams["defaultMemberPermissions"];
+	public nsfw?: CommandParams["nsfw"];
+	public contexts?: CommandParams["contexts"];
 
-    constructor({
-        name,
-        nameLocalizations,
-        description,
-        descriptionLocalizations,
-        options,
-        type,
-        dmPermission,
-        defaultMemberPermissions,
-        nsfw,
-        contexts,
-        run,
-    }: Omit<ChatInputApplicationCommandData, 'name' | 'description'> & { name: string; description: string; run: (interaction: ChatInputCommandInteraction) => void | Promise<void> }) {
-        this.name = name;
-        this.nameLocalizations = nameLocalizations;
-        this.description = description;
-        this.descriptionLocalizations = descriptionLocalizations;
-        this.options = options;
-        this.type = type;
-        this.dmPermission = dmPermission;
-        this.defaultMemberPermissions = defaultMemberPermissions ?? PermissionsBitField.Flags.SendMessages;
-        this.nsfw = nsfw;
-        this.contexts = contexts;
-        this.run = run;
+	public run: CommandParams["run"];
 
-        CommandHandler.registerCommand(this);
-    }
+	constructor(
+		params: CommandParams,
+	) {
+		this.name = params.name;
+		this.description = params.description;
+		this.nameLocalizations = params.nameLocalizations;
+		this.descriptionLocalizations = params.descriptionLocalizations;
+		this.options = params.options;
+		this.type = params.type;
+		this.dmPermission = params.dmPermission;
+		this.defaultMemberPermissions = params.defaultMemberPermissions ??
+			PermissionFlagsBits.SendMessages;
+		this.nsfw = params.nsfw;
+		this.contexts = params.contexts;
+		this.run = params.run;
+
+		CommandHandler.registerCommand(this);
+	}
 }

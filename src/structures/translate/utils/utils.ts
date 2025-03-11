@@ -2,7 +2,10 @@ import { Locale } from "discord.js";
 import { translate } from "./translater.ts";
 
 export function getLocalizations(key: string): Record<string, string> {
-	const localizations: Record<string, string> = {};
+	const localizations: Record<
+		string,
+		string
+	> = {};
 
 	const supportedLocales: string[] = [
 		Locale.SpanishES,
@@ -10,7 +13,9 @@ export function getLocalizations(key: string): Record<string, string> {
 		Locale.PortugueseBR,
 	];
 
-	for (const locale of Object.values(Locale)) {
+	for (
+		const locale of Object.values(Locale)
+	) {
 		try {
 			const isSupported = supportedLocales.includes(locale);
 
@@ -21,7 +26,13 @@ export function getLocalizations(key: string): Record<string, string> {
 				key: key,
 			});
 
-			if (!t || t.length < 1 || t.length > 100) {
+			if (
+				!t ||
+				t.length <
+					1 ||
+				t.length >
+					100
+			) {
 				console.warn(
 					`Invalid translation length for locale "${locale}" and key "${key}": Length must be between 1 and 100.`,
 				);

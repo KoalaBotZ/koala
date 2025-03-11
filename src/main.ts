@@ -5,10 +5,10 @@ import { EnvManager } from "@settings";
 EnvManager.initialize();
 
 new Koala({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.MessageContent,
-    ],
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.MessageContent,
+	],
 });

@@ -1,74 +1,74 @@
 commands:
-    ping:
-        description:
-            en-US: "Check if the bot is online."
-            pt-BR: "Verifica se o bot está online."
-            es-ES: "Comprueba si el bot está en línea."
-        response:
-            pt-BR: "Pong! Meu tempo de resposta é de **{{response_time}}**ms."
-            en-US: "Pong! My response time is **{{response_time}}**ms."
-            es-ES: "¡Pong! Mi tiempo de respuesta es de **{{response_time}}**ms."
+  ping:
+    description:
+      en-US: "Check if the bot is online."
+      pt-BR: "Verifica se o bot está online."
+      es-ES: "Comprueba si el bot está en línea."
+    response:
+      pt-BR: "Pong! Meu tempo de resposta é de **{{response_time}}**ms."
+      en-US: "Pong! My response time is **{{response_time}}**ms."
+      es-ES: "¡Pong! Mi tiempo de respuesta es de **{{response_time}}**ms."
 
-    locale:
-        name:
-            en-US: "locale"
-            pt-BR: "idioma"
-            es-ES: "idioma"
+  locale:
+    name:
+      en-US: "locale"
+      pt-BR: "idioma"
+      es-ES: "idioma"
+    description:
+      en-US: "Set the bot language."
+      pt-BR: "Define o idioma do bot."
+      es-ES: "Establecer el idioma del bot."
+    options:
+      lang:
         description:
-            en-US: "Set the bot language."
-            pt-BR: "Define o idioma do bot."
-            es-ES: "Establecer el idioma del bot."
-        options:
-            lang:
-                description:
-                    pt-BR: "O idioma que deseja definir."
-                    en-US: "The language you want to set."
-                    es-ES: "El idioma que deseas establecer."
-        response:
-            pt-BR: "{{e}} Idioma definido para **{{lang}}**."
-            en-US: "{{e}} Language set to **{{lang}}**."
-            es-ES: "{{e}} Idioma establecido en **{{lang}}**."
+          pt-BR: "O idioma que deseja definir."
+          en-US: "The language you want to set."
+          es-ES: "El idioma que deseas establecer."
+    response:
+      pt-BR: "{{e}} Idioma definido para **{{lang}}**."
+      en-US: "{{e}} Language set to **{{lang}}**."
+      es-ES: "{{e}} Idioma establecido en **{{lang}}**."
 
-    rewards:
-        name:
-            en-US: "rewards"
-            pt-BR: "recompensas"
-            es-ES: "recompensas"
-        description:
-            pt-BR: "Colete suas recompensas."
-            en-US: "Collect your rewards."
-            es-ES: "Recoge tus recompensas."
-        select_reward:
-            pt-BR: "Selecione sua recompensa:"
-            en-US: "Select your reward:"
-            es-ES: "Selecciona tu recompensa:"
-        buttons:
-            type:
-                daily:
-                    pt-BR: "Diário"
-                    en-US: "Daily"
-                    es-ES: "Diario"
-                weekly:
-                    pt-BR: "Semanal"
-                    en-US: "Weekly"
-                    es-ES: "Semanal"
-                monthly:
-                    pt-BR: "Mensal"
-                    en-US: "Monthly"
-                    es-ES: "Mensual"
-        response:
-            success:
-                pt-BR: "{{user}} Você coletou {{pamonhas}} na sua recompensa **{{reward}}**."
-                en-US: "{{user}} You collected {{pamonhas}} in your **{{reward}}** reward."
-                es-ES: "{{user}} Has recogido {{pamonhas}} en tu recompensa **{{reward}}**."
-            cooldown:
-                pt-BR: "{{e}} Você já coletou sua recompensa. Tente novamente em **{{time}}**."
-                en-US: "{{e}} You have already collected your reward. Try again in **{{time}}**."
-                es-ES: "{{e}} Ya has recogido tu recompensa. Inténtalo de nuevo en **{{time}}**."
+  rewards:
+    name:
+      en-US: "rewards"
+      pt-BR: "recompensas"
+      es-ES: "recompensas"
+    description:
+      pt-BR: "Colete suas recompensas."
+      en-US: "Collect your rewards."
+      es-ES: "Recoge tus recompensas."
+    select_reward:
+      pt-BR: "Selecione sua recompensa:"
+      en-US: "Select your reward:"
+      es-ES: "Selecciona tu recompensa:"
+    buttons:
+      type:
+        daily:
+          pt-BR: "Diário"
+          en-US: "Daily"
+          es-ES: "Diario"
+        weekly:
+          pt-BR: "Semanal"
+          en-US: "Weekly"
+          es-ES: "Semanal"
+        monthly:
+          pt-BR: "Mensal"
+          en-US: "Monthly"
+          es-ES: "Mensual"
+    response:
+      success:
+        pt-BR: "{{user}} Você coletou {{pamonhas}} na sua recompensa **{{reward}}**."
+        en-US: "{{user}} You collected {{pamonhas}} in your **{{reward}}** reward."
+        es-ES: "{{user}} Has recogido {{pamonhas}} en tu recompensa **{{reward}}**."
+      cooldown:
+        pt-BR: "{{e}} Você já coletou sua recompensa. Tente novamente em **{{time}}**."
+        en-US: "{{e}} You have already collected your reward. Try again in **{{time}}**."
+        es-ES: "{{e}} Ya has recogido tu recompensa. Inténtalo de nuevo en **{{time}}**."
 
 events:
-    message_create:
-        embed_description:
-            pt-BR: "### Olá! {{author}}, meu nome é {{bot}}\n- Eu sou um bot projetado para entreter seu servidor com vários minijogos."
-            en-US: "### Hello! {{author}}, my name is {{bot}}\n- I'm a bot designed to entertain your server with various minigames."
-            es-ES: "### ¡Hola! {{author}}, mi nombre es {{bot}}\n- Soy un bot diseñado para entretener tu servidor con varios minijogos."
+  message_create:
+    embed_description:
+      pt-BR: "### Olá! {{author}}, meu nome é {{bot}}\n- Eu sou um bot projetado para entreter seu servidor com vários minijogos."
+      en-US: "### Hello! {{author}}, my name is {{bot}}\n- I'm a bot designed to entertain your server with various minigames."
+      es-ES: "### ¡Hola! {{author}}, mi nombre es {{bot}}\n- Soy un bot diseñado para entretener tu servidor con varios minijogos."
