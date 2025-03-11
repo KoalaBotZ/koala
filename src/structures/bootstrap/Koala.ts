@@ -8,68 +8,27 @@ import ck from "chalk";
 interface KoalaProps {
 	intents: GatewayIntentBits[];
 	partials?: Partials[];
-	options?: {
-		loadCommands?: boolean;
-		loadEvents?: boolean;
-		loadComponents?: boolean;
-	};
-	whenReady?: (
-		client: Koala,
-	) =>
-		| void
-		| Promise<void>;
-	beforeReady?: (
-		client: Koala,
-	) =>
-		| void
-		| Promise<void>;
-	afterReady?: (
-		client: Koala,
-	) =>
-		| void
-		| Promise<void>;
+	whenReady?: (client: Koala) => void | Promise<void>;
+	beforeReady?: (client: Koala) => void | Promise<void>;
+	afterReady?: (client: Koala) => void | Promise<void>;
 }
 
 export class Koala extends Client<true> {
-	private readonly koalaOptions: KoalaProps["options"];
-	private readonly whenReadyCallback?: (
-		client: Koala,
-	) =>
-		| void
-		| Promise<void>;
-	private readonly beforeReadyCallback?: (
-		client: Koala,
-	) =>
-		| void
-		| Promise<void>;
-	private readonly afterReadyCallback?: (
-		client: Koala,
-	) =>
-		| void
-		| Promise<void>;
+	private readonly whenReadyCallback?: (client: Koala) => void | Promise<void>;
+	private readonly beforeReadyCallback?: (client: Koala) => void | Promise<void>;
+	private readonly afterReadyCallback?: (client: Koala) => void | Promise<void>;
 
-	constructor(
-		props: KoalaProps,
-	) {
+	constructor(props: KoalaProps) {
 		super({
 			intents: props.intents,
-			partials: props.partials ||
-				[],
+			partials: props.partials || [],
 		});
 
-		this.koalaOptions = props.options ||
-			{};
 		this.whenReadyCallback = props.whenReady;
 		this.beforeReadyCallback = props.beforeReady;
 		this.afterReadyCallback = props.afterReady;
 
-		this.start().catch(
-			(error) =>
-				consola.error(
-					"Failed to start the bot:",
-					error,
-				),
-		);
+		this.start();
 	}
 
 	private async start(): Promise<void> {
@@ -88,10 +47,7 @@ export class Koala extends Client<true> {
 				ck.blueBright(`🦕 deno ${ck.underline(Deno.version.deno)}`),
 			);
 		} catch (error) {
-			consola.error(
-				"Failed to start the bot:",
-				error,
-			);
+			consola.error("Failed to start the bot:", error);
 			throw error;
 		}
 	}
@@ -115,23 +71,8 @@ export class Koala extends Client<true> {
 	}
 
 	private async loadHandlers(): Promise<void> {
-		if (
-			this.koalaOptions?.loadEvents !==
-				false
-		) {
-			await EventHandler.loadEvents(this);
-		}
-		if (
-			this.koalaOptions?.loadCommands !==
-				false
-		) {
-			await CommandHandler.loadCommands(this);
-		}
-		if (
-			this.koalaOptions?.loadComponents !==
-				false
-		) {
-			await ComponentHandler.loadComponents(this);
-		}
+		await EventHandler.loadEvents(this);
+		await CommandHandler.loadCommands(this);
+		await ComponentHandler.loadComponents(this);
 	}
 }

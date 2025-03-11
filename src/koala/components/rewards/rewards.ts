@@ -6,6 +6,7 @@ import { calculatePamonhas, checkCooldown, updateUserRewards } from "./utils.ts"
 createComponent({
 	customId: "rewards/:type/:locale",
 	type: ComponentType.Button,
+	cache: "cached",
 	async run(interaction, { type, locale }) {
 		const { user } = interaction;
 

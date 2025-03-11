@@ -1,17 +1,23 @@
 import { Command, CommandParams, Component, ComponentInteraction, Event, ExtractParams } from "@structures";
-import { ClientEvents, ComponentType } from "discord.js";
+import { CacheType, ClientEvents, ComponentType } from "discord.js";
 
 function createCommand(params: CommandParams): Command {
 	return new Command(params);
 }
 
-function createComponent<T extends ComponentType, TPattern extends string>(params: {
+function createComponent<
+	T extends ComponentType | ComponentType[],
+	TPattern extends string,
+	C extends CacheType,
+>(params: {
 	customId: TPattern;
 	type: T;
-	run: (interaction: ComponentInteraction<T>, params: ExtractParams<TPattern>) =>
-		| void
-		| Promise<void>;
-}): Component<T, TPattern> {
+	cache: C;
+	run: (
+		interaction: ComponentInteraction<T, C>,
+		params: ExtractParams<TPattern>,
+	) => void | Promise<void>;
+}): Component<T, TPattern, C> {
 	return new Component(params);
 }
 
